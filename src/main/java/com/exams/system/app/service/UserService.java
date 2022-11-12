@@ -17,7 +17,7 @@ public class UserService implements IUserService {
 
     @Override
     @Transactional
-    public User save( User user, Set<Role> roles ) throws Exception {
+    public User save( User user ) throws Exception {
         Optional<User> localUser = this.userRepository.findByUsername( user.getUsername() );
         if( localUser.isPresent() ) {
             System.out.println( "Username already exist" );

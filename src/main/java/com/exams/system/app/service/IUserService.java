@@ -6,7 +6,7 @@ import com.exams.system.app.models.User;
 import java.util.Set;
 
 public interface IUserService {
-    public User save( User user, Set<Role> roles ) throws Exception;
+    public User save( User user ) throws Exception;
     public User getUserByUsername( String username );
     public void delete( Long userId );
 }
