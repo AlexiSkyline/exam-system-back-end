@@ -6,6 +6,6 @@ import com.exams.system.app.models.TypeRole;
 import java.util.Optional;
 
 public interface IRoleService {
-    Role save( TypeRole role ) throws Exception;
+    Role save( TypeRole role );
     public Optional<Role> findByName( TypeRole name );
 }

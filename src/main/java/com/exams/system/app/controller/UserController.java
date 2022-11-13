@@ -8,12 +8,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
-import java.util.HashSet;
 
 import static com.exams.system.app.models.TypeRole.ROLE_NORMAL;
 
 @RestController
 @RequestMapping( "/users" )
+@CrossOrigin( origins = "http://localhost:4200" )
 @AllArgsConstructor
 public class UserController {
     private final IUserService userService;
@@ -21,7 +21,8 @@ public class UserController {
 
     @PostMapping( "/" )
     public User saveUser( @RequestBody User user ) throws Exception {
-        Role normal_role = this.roleService.findByName( ROLE_NORMAL ).orElse( this.roleService.save( ROLE_NORMAL ) );
+        user.setProfile( "default.png" );
+        Role normal_role = this.roleService.findByName( ROLE_NORMAL ).orElseGet(() -> this.roleService.save( ROLE_NORMAL ) );
         user.setRoles( Collections.singleton( normal_role ) );
 
         return this.userService.save( user );
