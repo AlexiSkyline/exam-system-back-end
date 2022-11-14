@@ -13,7 +13,6 @@ import static com.exams.system.app.models.TypeRole.ROLE_NORMAL;
 
 @RestController
 @RequestMapping( "/users" )
-@CrossOrigin( origins = "http://localhost:4200" )
 @AllArgsConstructor
 public class UserController {
     private final IUserService userService;

@@ -31,7 +31,7 @@ public class AuthenticationController {
     public ResponseEntity<?> login( @RequestBody LoginRequest jwtRequest ) throws Exception {
         try{
             this.authenticate( jwtRequest.getUsername(), jwtRequest.getPassword() );
-        }catch ( UsernameNotFoundException exception ) {
+        } catch ( UsernameNotFoundException exception ) {
             exception.printStackTrace();
             throw new Exception( "User not Found" );
         }
@@ -44,10 +44,15 @@ public class AuthenticationController {
     private void authenticate( String username,String password ) throws Exception {
         try{
             authenticationManager.authenticate( new UsernamePasswordAuthenticationToken( username, password ) );
-        }catch ( DisabledException exception ) {
+        } catch ( DisabledException exception ) {
             throw  new Exception( "USER DISABLED " + exception.getMessage() );
-        }catch ( BadCredentialsException e ) {
+        } catch ( BadCredentialsException e ) {
             throw new Exception( "Invalid credentials " + e.getMessage() );
         }
+    }
+
+    @GetMapping( "/current-user" )
+    public User getUserLoggedIn( Principal principal ) {
+        return (User) this.userDetailService.loadUserByUsername( principal.getName() );
     }
 }
