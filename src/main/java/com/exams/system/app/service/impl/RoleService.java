@@ -1,8 +1,9 @@
-package com.exams.system.app.service;
+package com.exams.system.app.service.impl;
 
 import com.exams.system.app.models.Role;
 import com.exams.system.app.models.TypeRole;
 import com.exams.system.app.repository.IRoleRepository;
+import com.exams.system.app.service.IRoleService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -4,7 +4,7 @@ import com.exams.system.app.config.JwtUtils;
 import com.exams.system.app.models.LoginRequest;
 import com.exams.system.app.models.JwtResponse;
 import com.exams.system.app.models.User;
-import com.exams.system.app.service.UserDetailService;
+import com.exams.system.app.service.impl.UserDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

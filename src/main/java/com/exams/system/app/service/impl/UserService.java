@@ -1,7 +1,8 @@
-package com.exams.system.app.service;
+package com.exams.system.app.service.impl;
 
 import com.exams.system.app.models.User;
 import com.exams.system.app.repository.IUserRepository;
+import com.exams.system.app.service.IUserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

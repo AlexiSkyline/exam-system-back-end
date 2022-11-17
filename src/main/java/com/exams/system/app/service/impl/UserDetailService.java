@@ -1,4 +1,4 @@
-package com.exams.system.app.service;
+package com.exams.system.app.service.impl;
 
 import com.exams.system.app.models.User;
 import com.exams.system.app.repository.IUserRepository;

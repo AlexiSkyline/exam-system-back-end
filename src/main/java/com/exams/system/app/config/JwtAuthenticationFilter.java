@@ -1,6 +1,6 @@
 package com.exams.system.app.config;
 
-import com.exams.system.app.service.UserDetailService;
+import com.exams.system.app.service.impl.UserDetailService;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
