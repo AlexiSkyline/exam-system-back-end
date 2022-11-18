@@ -58,7 +58,7 @@ public class WebSecurityConfig {
                 .and()
                 .sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS )
                 .and()
-                .authorizeRequests().antMatchers( "/login","/users/" ).permitAll()
+                .authorizeRequests().antMatchers( "/login", "/users/", "/category/", "/exam/", "/question/" ).permitAll()
                 .anyRequest().authenticated();
 
         httpSecurity.authenticationProvider( this.authenticationProvider() );
@@ -73,7 +73,7 @@ public class WebSecurityConfig {
             @Override
             public void addCorsMappings( CorsRegistry registry ) {
                 registry.addMapping( "/**" )
-                        .allowedOrigins( "http://localhost:4200" ).allowedMethods( "GET", "POST","DELETE" )
+                        .allowedOrigins( "http://localhost:4200" ).allowedMethods( "GET", "POST", "DELETE", "PUT" )
                         .maxAge( 3600 );
             }
         };

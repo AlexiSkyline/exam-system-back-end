@@ -8,6 +8,6 @@ public interface ICategoryService {
     public Category add( Category category );
     public Category update( Category category );
     public Set<Category> findAll();
-    public Category getById( Long id );
+    public Category findById( Long id );
     public void deleteById( Long id );
 }

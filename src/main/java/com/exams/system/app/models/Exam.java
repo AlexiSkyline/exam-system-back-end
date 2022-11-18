@@ -24,7 +24,7 @@ public class Exam {
     private String title;
     private String description;
     private String maxPoints;
-    private String numberQuestions;
+    private Integer numberQuestions;
     private boolean status = false;
     @ManyToOne( fetch = EAGER )
     private Category category;

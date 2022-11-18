@@ -30,7 +30,7 @@ public class CategoryService implements ICategoryService {
     }
 
     @Override
-    public Category getById( Long id ) {
+    public Category findById( Long id ) {
         return this.categoryRepository.getReferenceById( id );
     }
 

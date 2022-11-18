@@ -19,7 +19,7 @@ public class Category {
     @Id
     @GeneratedValue( strategy = IDENTITY )
     private Long id;
-    private String titulo;
+    private String title;
     private String description;
     @OneToMany( mappedBy = "category", cascade = ALL )
     @JsonIgnore
