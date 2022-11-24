@@ -8,10 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @RestController
 @RequestMapping( "/question" )
@@ -52,5 +49,32 @@ public class QuestionController {
     @DeleteMapping( "/{id}" )
     public void deleteQuestion( @PathVariable Long id ) {
         this.questionService.deleteById( id );
+    }
+
+    @PostMapping( "/mark-exam" )
+    public ResponseEntity<?> markExam( @RequestBody List<Question> questions ) {
+        double maximumPoints = 0;
+        Integer correctAnswers = 0;
+        Integer attempts = 0;
+
+        for( Question question: questions ) {
+            Question current_question = this.questionService.findById( question.getId() );
+            if( current_question.getAnswer().equals( question.getUserAnswer() ) ) {
+                correctAnswers++;
+                double points = Double.parseDouble( questions.get(0).getExam().getMaxPoints()  )/ questions.size();
+                maximumPoints += points;
+            }
+
+            if( current_question.getUserAnswer() != null ) {
+                attempts++;
+            }
+        }
+
+        Map<String, Object> response = new HashMap<>();
+        response.put( "maximumPoints", maximumPoints );
+        response.put( "correctAnswers", correctAnswers );
+        response.put( "attempts", attempts );
+
+        return ResponseEntity.ok( response );
     }
 }
