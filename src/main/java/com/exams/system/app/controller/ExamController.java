@@ -1,5 +1,6 @@
 package com.exams.system.app.controller;
 
+import com.exams.system.app.models.Category;
 import com.exams.system.app.models.Exam;
 import com.exams.system.app.service.IExamService;
 import lombok.RequiredArgsConstructor;
@@ -35,5 +36,24 @@ public class ExamController {
     @DeleteMapping( "/{id}" )
     public void deleteExam( @PathVariable Long id ) {
         this.examService.deleteById( id );
+    }
+
+    @GetMapping("/category/{id}")
+    public ResponseEntity<?> getAllExamsByCategory( @PathVariable Long id ){
+        Category category = new Category();
+        category.setId( id );
+        return ResponseEntity.ok( this.examService.findByCategory( category ) );
+    }
+
+    @GetMapping("/active")
+    public ResponseEntity<?> getAllExamsActives(){
+        return ResponseEntity.ok( this.examService.findByStatus( true ) );
+    }
+
+    @GetMapping("/category/active/{id}")
+    public ResponseEntity<?> getAllExamsActivesByCategory( @PathVariable Long id ){
+        Category category = new Category();
+        category.setId( id );
+        return ResponseEntity.ok( this.examService.findByCategoryAndStatus( category, true ) );
     }
 }
