@@ -1,6 +1,6 @@
 package com.exams.system.app.controller;
 
-import com.exams.system.app.config.JwtUtils;
+import com.exams.system.app.security.jwt.JwtUtils;
 import com.exams.system.app.models.LoginRequest;
 import com.exams.system.app.models.JwtResponse;
 import com.exams.system.app.models.User;

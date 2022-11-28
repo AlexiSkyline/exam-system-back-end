@@ -1,5 +1,7 @@
 package com.exams.system.app.config;
 
+import com.exams.system.app.security.jwt.JwtAuthenticationEntryPoint;
+import com.exams.system.app.security.jwt.JwtAuthenticationFilter;
 import com.exams.system.app.service.impl.UserDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

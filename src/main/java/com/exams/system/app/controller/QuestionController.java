@@ -6,6 +6,7 @@ import com.exams.system.app.service.IQuestionService;
 import com.exams.system.app.service.IQuestionnaireService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -18,11 +19,13 @@ public class QuestionController {
     private final IQuestionnaireService questionnaireService;
 
     @PostMapping( "/" )
+    @PreAuthorize( "hasRole('ADMIN')" )
     public ResponseEntity<Question> saveQuestion( @RequestBody Question question ) {
         return ResponseEntity.ok( this.questionService.add( question ) );
     }
 
     @PutMapping( "/" )
+    @PreAuthorize( "hasRole('ADMIN')" )
     public ResponseEntity<Question> updateQuestion( @RequestBody Question question ) {
         return ResponseEntity.ok( this.questionService.update( question ) );
     }
@@ -47,6 +50,7 @@ public class QuestionController {
     }
 
     @DeleteMapping( "/{id}" )
+    @PreAuthorize( "hasRole('ADMIN')" )
     public void deleteQuestion( @PathVariable Long id ) {
         this.questionService.deleteById( id );
     }

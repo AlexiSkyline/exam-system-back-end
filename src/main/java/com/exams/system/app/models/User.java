@@ -19,7 +19,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table( name = "users" )
 @Getter @Setter
-public class User implements UserDetails {
+public class User {
     @Id
     @GeneratedValue( strategy = IDENTITY )
     private Long id;
@@ -35,27 +35,4 @@ public class User implements UserDetails {
     @JoinTable( name = "user_roles", joinColumns = @JoinColumn( name = "user_id" ),
             inverseJoinColumns = @JoinColumn( name = "role_id" ))
     private Set<Role> roles = new HashSet<>();
-
-    @Override
-    @JsonIgnore
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.getRoles().stream()
-                .map( role -> new SimpleGrantedAuthority( role.getName().name() ) )
-                .collect( Collectors.toList() );
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
 }

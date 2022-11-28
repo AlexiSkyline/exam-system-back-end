@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
 
-import static com.exams.system.app.models.TypeRole.ROLE_NORMAL;
+import static com.exams.system.app.models.TypeRole.ROLE_USER;
 
 @RestController
 @RequestMapping( "/users" )
@@ -21,7 +21,7 @@ public class UserController {
     @PostMapping( "/" )
     public User saveUser( @RequestBody User user ) throws Exception {
         user.setProfile( "default.png" );
-        Role normal_role = this.roleService.findByName( ROLE_NORMAL ).orElseGet(() -> this.roleService.save( ROLE_NORMAL ) );
+        Role normal_role = this.roleService.findByName(ROLE_USER).orElseGet(() -> this.roleService.save(ROLE_USER) );
         user.setRoles( Collections.singleton( normal_role ) );
 
         return this.userService.save( user );
