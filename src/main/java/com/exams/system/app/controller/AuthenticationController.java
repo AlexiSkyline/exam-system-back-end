@@ -1,9 +1,9 @@
 package com.exams.system.app.controller;
 
 import com.exams.system.app.security.jwt.JwtUtils;
-import com.exams.system.app.models.LoginRequest;
-import com.exams.system.app.models.JwtResponse;
-import com.exams.system.app.models.User;
+import com.exams.system.app.models.request.LoginRequest;
+import com.exams.system.app.models.response.JwtResponse;
+import com.exams.system.app.models.domain.User;
 import com.exams.system.app.service.impl.UserDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

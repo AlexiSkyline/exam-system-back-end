@@ -1,7 +1,7 @@
 package com.exams.system.app.service.impl;
 
-import com.exams.system.app.models.Category;
-import com.exams.system.app.models.Questionnaire;
+import com.exams.system.app.models.domain.Category;
+import com.exams.system.app.models.domain.Questionnaire;
 import com.exams.system.app.repository.IQuestionnaireRepository;
 import com.exams.system.app.service.IQuestionnaireService;
 import lombok.RequiredArgsConstructor;
@@ -37,8 +37,11 @@ public class QuestionnaireService implements IQuestionnaireService {
     }
 
     @Override
-    public void deleteById( Long id ) {
+    public Questionnaire deleteById( Long id ) {
+        Questionnaire questionnaireFound = this.questionnaireRepository.findById( id ).get();
         this.questionnaireRepository.deleteById( id );
+
+        return questionnaireFound;
     }
 
     @Override

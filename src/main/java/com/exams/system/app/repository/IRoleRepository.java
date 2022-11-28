@@ -1,6 +1,6 @@
 package com.exams.system.app.repository;
 
-import com.exams.system.app.models.Role;
+import com.exams.system.app.models.domain.Role;
 import com.exams.system.app.models.TypeRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

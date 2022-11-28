@@ -1,7 +1,7 @@
 package com.exams.system.app.repository;
 
-import com.exams.system.app.models.Category;
-import com.exams.system.app.models.Questionnaire;
+import com.exams.system.app.models.domain.Category;
+import com.exams.system.app.models.domain.Questionnaire;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

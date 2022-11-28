@@ -1,6 +1,6 @@
 package com.exams.system.app.service.impl;
 
-import com.exams.system.app.models.User;
+import com.exams.system.app.models.domain.User;
 import com.exams.system.app.repository.IUserRepository;
 import com.exams.system.app.service.IUserService;
 import lombok.AllArgsConstructor;
@@ -35,7 +35,10 @@ public class UserService implements IUserService {
 
     @Override
     @Transactional
-    public void delete( Long userId ) {
+    public User delete( Long userId ) {
+        User userFound = this.userRepository.findById( userId ).get();
         this.userRepository.deleteById( userId );
+
+        return userFound;
     }
 }

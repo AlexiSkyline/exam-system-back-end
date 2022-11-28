@@ -1,5 +1,6 @@
-package com.exams.system.app.models;
+package com.exams.system.app.models.domain;
 
+import com.exams.system.app.models.TypeRole;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

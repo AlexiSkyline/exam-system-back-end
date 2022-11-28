@@ -1,4 +1,4 @@
-package com.exams.system.app.models;
+package com.exams.system.app.models.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

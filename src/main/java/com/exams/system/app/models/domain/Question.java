@@ -1,4 +1,4 @@
-package com.exams.system.app.models;
+package com.exams.system.app.models.domain;
 
 import lombok.Getter;
 import lombok.Setter;

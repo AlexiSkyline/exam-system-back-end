@@ -1,6 +1,6 @@
 package com.exams.system.app.service.impl;
 
-import com.exams.system.app.models.User;
+import com.exams.system.app.models.domain.User;
 import com.exams.system.app.models.UserDetailsImpl;
 import com.exams.system.app.repository.IUserRepository;
 import lombok.AllArgsConstructor;

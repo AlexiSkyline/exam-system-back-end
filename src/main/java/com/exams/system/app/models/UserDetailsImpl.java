@@ -1,5 +1,6 @@
 package com.exams.system.app.models;
 
+import com.exams.system.app.models.domain.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

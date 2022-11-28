@@ -1,17 +1,12 @@
-package com.exams.system.app.models;
+package com.exams.system.app.models.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.exams.system.app.models.domain.Role;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import static javax.persistence.FetchType.EAGER;
 import static javax.persistence.GenerationType.IDENTITY;

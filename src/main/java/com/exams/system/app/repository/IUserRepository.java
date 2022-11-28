@@ -1,6 +1,6 @@
 package com.exams.system.app.repository;
 
-import com.exams.system.app.models.User;
+import com.exams.system.app.models.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

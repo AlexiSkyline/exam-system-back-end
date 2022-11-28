@@ -1,5 +1,7 @@
-package com.exams.system.app.models;
+package com.exams.system.app.models.domain;
 
+import com.exams.system.app.models.domain.Category;
+import com.exams.system.app.models.domain.Question;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,7 +30,7 @@ public class Questionnaire {
     private boolean status = false;
     @ManyToOne( fetch = EAGER )
     private Category category;
-    @OneToMany( mappedBy = "questionnaire", fetch = LAZY, cascade = ALL )
+    @OneToMany( mappedBy = "questionnaire", fetch = EAGER, cascade = ALL )
     @JsonIgnore
     private Set<Question> questions = new HashSet<>();
 }

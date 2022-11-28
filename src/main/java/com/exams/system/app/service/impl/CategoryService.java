@@ -1,6 +1,6 @@
 package com.exams.system.app.service.impl;
 
-import com.exams.system.app.models.Category;
+import com.exams.system.app.models.domain.Category;
 import com.exams.system.app.repository.ICategoryRepository;
 import com.exams.system.app.service.ICategoryService;
 import lombok.RequiredArgsConstructor;
@@ -31,11 +31,13 @@ public class CategoryService implements ICategoryService {
 
     @Override
     public Category findById( Long id ) {
-        return this.categoryRepository.getReferenceById( id );
+        return this.categoryRepository.findById( id ).get();
     }
 
     @Override
-    public void deleteById( Long id ) {
+    public Category deleteById( Long id ) {
+        Category categoryFound = this.categoryRepository.findById( id ).get();
         this.categoryRepository.deleteById( id );
+        return categoryFound;
     }
 }

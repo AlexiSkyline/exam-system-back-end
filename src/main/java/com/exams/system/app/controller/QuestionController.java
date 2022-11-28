@@ -1,7 +1,9 @@
 package com.exams.system.app.controller;
 
-import com.exams.system.app.models.Question;
-import com.exams.system.app.models.Questionnaire;
+import com.exams.system.app.models.ResponseHandler;
+import com.exams.system.app.models.domain.Question;
+import com.exams.system.app.models.domain.Questionnaire;
+import com.exams.system.app.models.response.ResponseBody;
 import com.exams.system.app.service.IQuestionService;
 import com.exams.system.app.service.IQuestionnaireService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +12,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
+
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequestMapping( "/question" )
@@ -20,14 +25,13 @@ public class QuestionController {
 
     @PostMapping( "/" )
     @PreAuthorize( "hasRole('ADMIN')" )
-    public ResponseEntity<Question> saveQuestion( @RequestBody Question question ) {
-        return ResponseEntity.ok( this.questionService.add( question ) );
+    public ResponseEntity<ResponseBody<Question>> saveQuestion( @RequestBody Question question ) {
+        return ResponseHandler.responseBuild( CREATED, "Question Created Successfully", this.questionService.add( question )  );
     }
 
-    @PutMapping( "/" )
-    @PreAuthorize( "hasRole('ADMIN')" )
-    public ResponseEntity<Question> updateQuestion( @RequestBody Question question ) {
-        return ResponseEntity.ok( this.questionService.update( question ) );
+    @GetMapping( "/{id}" )
+    public ResponseEntity<ResponseBody<Question>> getQuestionById( @PathVariable Long id ) {
+        return ResponseHandler.responseBuild( OK, "Requested Question By ID are given here", this.questionService.findById( id ) );
     }
 
     @GetMapping( "/questionnaire/{id}" )
@@ -41,18 +45,19 @@ public class QuestionController {
         }
 
         Collections.shuffle( questionnaires );
-        return ResponseEntity.ok( questionnaires );
+        return ResponseHandler.responseBuild( OK, "Request of all the questions of the questionnaire with the ID: " + id, questionnaire );
     }
 
-    @GetMapping( "/{id}" )
-    public Question getQuestionById( @PathVariable Long id ) {
-        return this.questionService.findById( id );
+    @PutMapping( "/" )
+    @PreAuthorize( "hasRole('ADMIN')" )
+    public ResponseEntity<ResponseBody<Question>> updateQuestion( @RequestBody Question question ) {
+        return ResponseHandler.responseBuild( OK, "Question Update Successfully", this.questionService.update( question ) );
     }
 
     @DeleteMapping( "/{id}" )
     @PreAuthorize( "hasRole('ADMIN')" )
-    public void deleteQuestion( @PathVariable Long id ) {
-        this.questionService.deleteById( id );
+    public ResponseEntity<ResponseBody<Question>> deleteQuestion( @PathVariable Long id ) {
+        return ResponseHandler.responseBuild( OK, "Category Delete Successfully", this.questionService.deleteById( id ) );
     }
 
     @PostMapping( "/mark-questionnaire" )
@@ -79,6 +84,6 @@ public class QuestionController {
         response.put( "correctAnswers", correctAnswers );
         response.put( "attempts", attempts );
 
-        return ResponseEntity.ok( response );
+        return ResponseHandler.responseBuild( OK, "Questionnaire grading information", response );
     }
 }

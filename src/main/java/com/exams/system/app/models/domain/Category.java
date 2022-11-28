@@ -1,4 +1,4 @@
-package com.exams.system.app.models;
+package com.exams.system.app.models.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
@@ -23,5 +23,5 @@ public class Category {
     private String description;
     @OneToMany( mappedBy = "category", cascade = ALL )
     @JsonIgnore
-    private Set<Questionnaire> Questionnaire = new LinkedHashSet<>();
+    private Set<com.exams.system.app.models.domain.Questionnaire> Questionnaire = new LinkedHashSet<>();
 }
