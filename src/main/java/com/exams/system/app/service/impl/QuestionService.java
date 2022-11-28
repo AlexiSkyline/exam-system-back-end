@@ -1,7 +1,7 @@
 package com.exams.system.app.service.impl;
 
-import com.exams.system.app.models.Exam;
 import com.exams.system.app.models.Question;
+import com.exams.system.app.models.Questionnaire;
 import com.exams.system.app.repository.IQuestionRepository;
 import com.exams.system.app.service.IQuestionService;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +12,7 @@ import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
-public class QuestionService implements IQuestionService  {
+public class QuestionService implements IQuestionService {
     public final IQuestionRepository questionRepository;
 
     @Override
@@ -36,8 +36,8 @@ public class QuestionService implements IQuestionService  {
     }
 
     @Override
-    public Set<Question> findByExam( Exam exam ) {
-        return this.questionRepository.findByExam( exam );
+    public Set<Question> findByQuestionnaire( Questionnaire questionnaire ) {
+        return this.questionRepository.findByQuestionnaire( questionnaire );
     }
 
     @Override

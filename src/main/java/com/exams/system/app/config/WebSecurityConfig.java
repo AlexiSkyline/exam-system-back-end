@@ -58,7 +58,7 @@ public class WebSecurityConfig {
                 .and()
                 .sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS )
                 .and()
-                .authorizeRequests().antMatchers( "/login", "/users/", "/category/", "/exam/", "/question/" ).permitAll()
+                .authorizeRequests().antMatchers( "/login", "/users/", "/category/", "/questionnaire/", "/question/" ).permitAll()
                 .anyRequest().authenticated();
 
         httpSecurity.authenticationProvider( this.authenticationProvider() );

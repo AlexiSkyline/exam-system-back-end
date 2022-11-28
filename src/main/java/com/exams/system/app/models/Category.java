@@ -23,5 +23,5 @@ public class Category {
     private String description;
     @OneToMany( mappedBy = "category", cascade = ALL )
     @JsonIgnore
-    private Set<Exam> exams = new LinkedHashSet<>();
+    private Set<Questionnaire> Questionnaire = new LinkedHashSet<>();
 }

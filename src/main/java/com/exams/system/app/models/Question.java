@@ -25,5 +25,5 @@ public class Question {
     @Transient
     private String userAnswer;
     @ManyToOne( fetch = EAGER )
-    private Exam exam;
+    private Questionnaire questionnaire;
 }

@@ -15,20 +15,20 @@ import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Table( name = "exams" )
+@Table( name = "questionnaires" )
 @Getter @Setter
-public class Exam {
+public class Questionnaire {
     @Id
     @GeneratedValue( strategy = IDENTITY )
     private Long id;
     private String title;
     private String description;
-    private String maxPoints;
+    private Integer maxPoints;
     private Integer numberQuestions;
     private boolean status = false;
     @ManyToOne( fetch = EAGER )
     private Category category;
-    @OneToMany( mappedBy = "exam", fetch = LAZY, cascade = ALL )
+    @OneToMany( mappedBy = "questionnaire", fetch = LAZY, cascade = ALL )
     @JsonIgnore
     private Set<Question> questions = new HashSet<>();
 }
