@@ -2,6 +2,8 @@ package com.exams.system.app.service.impl;
 
 import com.exams.system.app.models.domain.Role;
 import com.exams.system.app.models.TypeRole;
+import com.exams.system.app.models.exception.FieldAlreadyUsedException;
+import com.exams.system.app.models.exception.RecordNotFoundException;
 import com.exams.system.app.repository.IRoleRepository;
 import com.exams.system.app.service.IRoleService;
 import lombok.AllArgsConstructor;
@@ -18,7 +20,7 @@ public class RoleService implements IRoleService {
     public Role save( TypeRole role ) {
         Optional<Role> roleFound = this.roleRepository.findByName( role );
         if( roleFound.isPresent() ) {
-            System.out.println( "Role already exist" );
+            throw new FieldAlreadyUsedException( "Name", "Role" );
         }
 
         return this.roleRepository.save( new Role( role ) );

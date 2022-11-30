@@ -1,6 +1,7 @@
 package com.exams.system.app.service.impl;
 
 import com.exams.system.app.models.domain.Category;
+import com.exams.system.app.models.exception.RecordNotFoundException;
 import com.exams.system.app.repository.ICategoryRepository;
 import com.exams.system.app.service.ICategoryService;
 import lombok.RequiredArgsConstructor;
@@ -31,12 +32,12 @@ public class CategoryService implements ICategoryService {
 
     @Override
     public Category findById( Long id ) {
-        return this.categoryRepository.findById( id ).get();
+        return this.categoryRepository.findById( id ).orElseThrow(() -> new RecordNotFoundException( id.toString(), "Category", "ID" ));
     }
 
     @Override
     public Category deleteById( Long id ) {
-        Category categoryFound = this.categoryRepository.findById( id ).get();
+        Category categoryFound = this.categoryRepository.findById( id ).orElseThrow(() -> new RecordNotFoundException( id.toString(), "Category", "ID" ));
         this.categoryRepository.deleteById( id );
         return categoryFound;
     }

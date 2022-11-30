@@ -2,6 +2,7 @@ package com.exams.system.app.service.impl;
 
 import com.exams.system.app.models.domain.Question;
 import com.exams.system.app.models.domain.Questionnaire;
+import com.exams.system.app.models.exception.RecordNotFoundException;
 import com.exams.system.app.repository.IQuestionRepository;
 import com.exams.system.app.service.IQuestionService;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +33,7 @@ public class QuestionService implements IQuestionService {
 
     @Override
     public Question findById( Long id ) {
-        return this.questionRepository.findById( id ).get();
+        return this.questionRepository.findById( id ).orElseThrow(() -> new RecordNotFoundException( id.toString(), "Question", "ID" ));
     }
 
     @Override
@@ -42,7 +43,7 @@ public class QuestionService implements IQuestionService {
 
     @Override
     public Question deleteById( Long id ) {
-        Question questionFound = this.questionRepository.findById( id ).get();
+        Question questionFound = this.questionRepository.findById( id ).orElseThrow(() -> new RecordNotFoundException( id.toString(), "Question", "ID" ));
         this.questionRepository.deleteById( id );
         return questionFound;
     }

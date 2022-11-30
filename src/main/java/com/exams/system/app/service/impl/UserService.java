@@ -1,6 +1,8 @@
 package com.exams.system.app.service.impl;
 
 import com.exams.system.app.models.domain.User;
+import com.exams.system.app.models.exception.FieldAlreadyUsedException;
+import com.exams.system.app.models.exception.RecordNotFoundException;
 import com.exams.system.app.repository.IUserRepository;
 import com.exams.system.app.service.IUserService;
 import lombok.AllArgsConstructor;
@@ -21,24 +23,25 @@ public class UserService implements IUserService {
     public User save( User user ) {
         Optional<User> localUser = this.userRepository.findByUsername( user.getUsername() );
         if( localUser.isPresent() ) {
-            System.out.println( "Username already exist" );
+            throw new FieldAlreadyUsedException( "Username", "User" );
         }
         user.setPassword( this.passwordEncoder.encode( user.getPassword() ) );
+
         return this.userRepository.save( user );
     }
 
     @Override
     @Transactional( readOnly = true )
     public User getUserByUsername( String username ) {
-        return this.userRepository.findByUsername( username ).orElse( null );
+        return this.userRepository.findByUsername( username )
+                .orElseThrow(() -> new RecordNotFoundException( username, "User", "Username" ));
     }
 
     @Override
     @Transactional
     public User delete( Long userId ) {
-        User userFound = this.userRepository.findById( userId ).get();
+        User userFound = this.userRepository.findById( userId ).orElseThrow(() -> new RecordNotFoundException( userId.toString(), "User", "ID" ));
         this.userRepository.deleteById( userId );
-
         return userFound;
     }
 }
