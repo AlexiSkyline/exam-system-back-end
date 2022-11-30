@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -23,9 +25,14 @@ public class Questionnaire {
     @Id
     @GeneratedValue( strategy = IDENTITY )
     private Long id;
+    @NotBlank
+    @Size( min = 5 )
     private String title;
+    @NotBlank
     private String description;
+    @NotBlank
     private Integer maxPoints;
+    @NotBlank
     private Integer numberQuestions;
     private boolean status = false;
     @ManyToOne( fetch = EAGER )

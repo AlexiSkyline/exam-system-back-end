@@ -12,8 +12,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table( name = "roles" )
 @NoArgsConstructor
-@Setter
-@Getter
+@Setter @Getter
 public class Role {
     @Id
     @GeneratedValue( strategy = IDENTITY )

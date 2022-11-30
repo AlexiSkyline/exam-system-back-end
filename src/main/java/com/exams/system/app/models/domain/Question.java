@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 import static javax.persistence.FetchType.EAGER;
 
@@ -14,6 +15,7 @@ public class Question {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
     private Long id;
+    @NotBlank
     @Column( length = 5000 )
     private String content;
     private String image;
@@ -21,6 +23,7 @@ public class Question {
     private String option2;
     private String option3;
     private String option4;
+    @NotBlank
     private String answer;
     @Transient
     private String userAnswer;

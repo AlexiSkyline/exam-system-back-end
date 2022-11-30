@@ -5,6 +5,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,11 +21,24 @@ public class User {
     @Id
     @GeneratedValue( strategy = IDENTITY )
     private Long id;
+    @NotBlank
+    @Size( max = 20 )
+    @Column( unique = true )
     private String username;
-    private String password;
-    private String name;
-    private String surname;
+    @NotBlank
+    @Size( max = 50 )
+    @Email
+    @Column( unique = true )
     private String email;
+    @NotBlank
+    @Size( max = 60 )
+    private String password;
+    @NotBlank
+    private String name;
+    @NotBlank
+    private String surname;
+    @NotBlank
+    @Size( max = 15 )
     private String phoneNumber;
     private boolean enabled = true;
     private String profile;
