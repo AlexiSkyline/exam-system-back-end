@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.security.Principal;
 
 @RestController
@@ -28,7 +29,7 @@ public class AuthenticationController {
     private final JwtUtils jwtUtils;
 
     @PostMapping( "/login" )
-    public ResponseEntity<?> login( @RequestBody LoginRequest jwtRequest ) throws Exception {
+    public ResponseEntity<?> login( @RequestBody @Valid LoginRequest jwtRequest ) throws Exception {
         try{
             this.authenticate( jwtRequest.getUsername(), jwtRequest.getPassword() );
         } catch ( UsernameNotFoundException exception ) {
@@ -41,7 +42,7 @@ public class AuthenticationController {
         return ResponseEntity.ok( new JwtResponse( token ));
     }
 
-    private void authenticate( String username,String password ) throws Exception {
+    private void authenticate( String username, String password ) throws Exception {
         try{
             authenticationManager.authenticate( new UsernamePasswordAuthenticationToken( username, password ) );
         } catch ( DisabledException exception ) {

@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.*;
 
 import static org.springframework.http.HttpStatus.CREATED;
@@ -25,7 +26,7 @@ public class QuestionController {
 
     @PostMapping( "/" )
     @PreAuthorize( "hasRole('ADMIN')" )
-    public ResponseEntity<ResponseBody<Question>> saveQuestion( @RequestBody Question question ) {
+    public ResponseEntity<ResponseBody<Question>> saveQuestion( @RequestBody @Valid Question question ) {
         return ResponseHandler.responseBuild( CREATED, "Question Created Successfully", this.questionService.add( question )  );
     }
 
@@ -50,7 +51,7 @@ public class QuestionController {
 
     @PutMapping( "/" )
     @PreAuthorize( "hasRole('ADMIN')" )
-    public ResponseEntity<ResponseBody<Question>> updateQuestion( @RequestBody Question question ) {
+    public ResponseEntity<ResponseBody<Question>> updateQuestion( @RequestBody @Valid Question question ) {
         return ResponseHandler.responseBuild( OK, "Question Update Successfully", this.questionService.update( question ) );
     }
 

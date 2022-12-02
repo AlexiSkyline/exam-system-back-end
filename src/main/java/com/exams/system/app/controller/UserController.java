@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Collections;
 
 import static com.exams.system.app.models.TypeRole.ROLE_USER;
@@ -23,7 +24,7 @@ public class UserController {
     private final IRoleService roleService;
 
     @PostMapping( "/" )
-    public ResponseEntity<?> saveUser( @RequestBody User user ) {
+    public ResponseEntity<?> saveUser( @RequestBody @Valid User user ) {
         user.setProfile( "default.png" );
         Role normal_role = this.roleService.findByName(ROLE_USER).orElseGet(() -> this.roleService.save(ROLE_USER) );
         user.setRoles( Collections.singleton( normal_role ) );

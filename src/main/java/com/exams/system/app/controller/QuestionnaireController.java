@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
@@ -19,7 +21,7 @@ public class QuestionnaireController {
 
     @PostMapping( "/" )
     @PreAuthorize( "hasRole('ADMIN')" )
-    public ResponseEntity<?> saveQuestionnaire( @RequestBody Questionnaire questionnaire ) {
+    public ResponseEntity<?> saveQuestionnaire( @RequestBody @Valid Questionnaire questionnaire ) {
         return ResponseHandler.responseBuild( CREATED, "Questionnaire Created Successfully", this.questionnaireService.add( questionnaire )  );
     }
 
@@ -35,7 +37,7 @@ public class QuestionnaireController {
 
     @PutMapping( "/" )
     @PreAuthorize( "hasRole('ADMIN')" )
-    public ResponseEntity<?> updateQuestionnaire( @RequestBody Questionnaire questionnaire ) {
+    public ResponseEntity<?> updateQuestionnaire( @RequestBody @Valid Questionnaire questionnaire ) {
         return ResponseHandler.responseBuild( OK, "Questionnaire Update Successfully", this.questionnaireService.update( questionnaire ) );
     }
 

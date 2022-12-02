@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Set;
 
 import static org.springframework.http.HttpStatus.CREATED;
@@ -20,7 +21,7 @@ public class CategoryController {
     private final ICategoryService categoryService;
 
     @PostMapping( "/" )
-    public ResponseEntity<ResponseBody<Category>> saveCategory( @RequestBody Category category ) {
+    public ResponseEntity<ResponseBody<Category>> saveCategory( @RequestBody @Valid Category category ) {
         return ResponseHandler.responseBuild( CREATED, "Category Created Successfully", this.categoryService.add( category )  );
     }
 
@@ -35,7 +36,7 @@ public class CategoryController {
     }
 
     @PutMapping( "/" )
-    public ResponseEntity<ResponseBody<Category>> updateCategory( @RequestBody Category category ) {
+    public ResponseEntity<ResponseBody<Category>> updateCategory( @RequestBody @Valid Category category ) {
         return ResponseHandler.responseBuild( OK, "Category Update Successfully", this.categoryService.update( category ) );
     }
 
