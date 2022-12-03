@@ -22,11 +22,11 @@ public class User {
     @GeneratedValue( strategy = IDENTITY )
     private Long id;
     @NotBlank
-    @Size( max = 20 )
+    @Size( min = 4, max = 20 )
     @Column( unique = true )
     private String username;
     @NotBlank
-    @Size( max = 50 )
+    @Size( max = 20 )
     @Email
     @Column( unique = true )
     private String email;

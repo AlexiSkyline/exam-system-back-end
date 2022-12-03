@@ -4,8 +4,10 @@ import com.exams.system.app.security.jwt.JwtAuthenticationEntryPoint;
 import com.exams.system.app.security.jwt.JwtAuthenticationFilter;
 import com.exams.system.app.service.impl.UserDetailService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -79,5 +81,13 @@ public class WebSecurityConfig {
                         .maxAge( 3600 );
             }
         };
+    }
+
+    @Bean
+    public MessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasename( "classpath:messages" );
+        messageSource.setDefaultEncoding( "UTF-8" );
+        return messageSource;
     }
 }
