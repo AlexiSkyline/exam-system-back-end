@@ -1,6 +1,7 @@
 package com.exams.system.app.models.domain;
 
 import com.exams.system.app.models.domain.Role;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,6 +33,7 @@ public class User {
     private String email;
     @NotBlank
     @Size( max = 60 )
+    @JsonIgnore
     private String password;
     @NotBlank
     private String name;
