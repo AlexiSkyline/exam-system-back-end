@@ -46,7 +46,7 @@ public class QuestionController {
         }
 
         Collections.shuffle( questionnaires );
-        return ResponseHandler.responseBuild( OK, "Request of all the questions of the questionnaire with the ID: " + id, questionnaire );
+        return ResponseHandler.responseBuild( OK, "Request of all the questions of the questionnaire with the ID: " + id, questionnaires );
     }
 
     @PutMapping( "/" )

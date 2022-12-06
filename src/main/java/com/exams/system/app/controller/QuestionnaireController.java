@@ -60,6 +60,6 @@ public class QuestionnaireController {
     @GetMapping( "/category/active/{id}" )
     public ResponseEntity<?> getAllQuestionnairesActivesByCategory( @PathVariable Long id ){
         return ResponseHandler.responseBuild( OK, "Request for all active questionnaires by category ID: " + id,
-                this.questionnaireService.findByCategoryIdAndStatus( id, false ) );
+                this.questionnaireService.findByCategoryIdAndStatus( id, true ) );
     }
 }

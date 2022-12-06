@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import java.util.HashSet;
@@ -30,9 +31,9 @@ public class Questionnaire {
     private String title;
     @NotBlank
     private String description;
-    @NotBlank
+    @NotNull
     private Integer maxPoints;
-    @NotBlank
+    @NotNull
     private Integer numberQuestions;
     private boolean status = false;
     @ManyToOne( fetch = EAGER )
